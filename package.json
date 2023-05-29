@@ -1,0 +1,8 @@
+{
+  "name": "Practice_CookieRememberMeNodeJS",
+  "version": "1.0.0",
+  "dependencies": {
+    "cookie": "^0.5.0",
+    "escape-html": "^1.0.3"
+  }
+}
