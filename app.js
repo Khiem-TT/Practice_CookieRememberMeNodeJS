@@ -8,7 +8,7 @@ let server = http.createServer((req, res) => {
     if (query && query.remember && query.name) {
         res.setHeader('Set-Cookie', cookie.serialize('name', String(query.name), {
             httpOnly: true,
-            maxAge: 10
+            maxAge: 0
         }));
         res.statusCode = 302;
         res.setHeader('Location', req.headers.referer || '/');
@@ -21,12 +21,17 @@ let server = http.createServer((req, res) => {
     if (name) {
         res.write('<form method="GET">');
         res.write('<p>Welcome back, <b>' + escapeHtml(name) + '</b>!</p>');
-        res.write('<input placeholder="enter your name" name="name" value="' + escapeHtml(name) + '"> <input type="submit" value="Set Name">');
-        res.end('</form>');
+        res.write('<input placeholder="enter your name" name="name" value="' + escapeHtml(name) + '"></br>');
+        res.write('<input type="checkbox" id="remember" name="remember" value="true">\n' +
+            '<label for="vehicle2"> Remember me</label><br>');
+        res.write('<input type="submit" value="Set Name">');
     } else {
         res.write('<form method="GET">');
         res.write('<p>Hello, new visitor!</p>');
-        res.write('<input placeholder="enter your name" name="name" value=""> <input type="submit" value="Set Name">');
+        res.write('<input placeholder="enter your name" name="name" value=""></br>');
+        res.write('<input type="checkbox" id="remember" name="remember" value="true">\n' +
+            '<label for="vehicle2"> Remember me</label><br>');
+        res.write('<input type="submit" value="Set Name">');
         res.end('</form>');
     }
 });
